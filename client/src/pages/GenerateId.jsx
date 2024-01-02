@@ -35,13 +35,13 @@ const GenerateId = () => {
             user.photo = filename;
 
             try {
-                await axios.post("/api/upload", data);
+                await axios.post(`${import.meta.env.VITE_BASE_URL}/api/upload`, data);
             } catch (error) {
                 // console.log(error);
                 message.error(error.response.data.message)
             }
             try {
-                const { data } = await axios.post("/api/user/generateId", user);
+                const { data } = await axios.post(`${import.meta.env.VITE_BASE_URL}/api/user/generateId`, user);
                 // console.log(data);
                 message.success("Id card generated");
                 localStorage.setItem("cardId", JSON.stringify(data.userIdCard._id))

@@ -73,7 +73,7 @@ exports.loginUser = async (req, res) => {
         if (!user.isApprove) {
             return res.status(401).json({
                 success: false,
-                message: "You are not Approve"
+                message: "You are not Approve yet"
             })
         }
 

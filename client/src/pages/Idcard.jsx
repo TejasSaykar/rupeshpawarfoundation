@@ -12,7 +12,7 @@ const Idcard = () => {
 
     const getIdCard = async () => {
         try {
-            const { data } = await axios.get(`/api/user/getcard/${JSON.parse(localStorage.getItem("cardId"))}`);
+            const { data } = await axios.get(`${import.meta.env.VITE_BASE_URL}/api/user/getcard/${JSON.parse(localStorage.getItem("cardId"))}`);
             if (data) {
                 setUser(data.employee);
                 console.log("Idcard Data", data.employee)

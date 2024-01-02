@@ -1,8 +1,10 @@
 const mongoose = require("mongoose");
+const dotenv = require("dotenv")
+dotenv.config();
 
 const connectDB = async () => {
     try {
-        await mongoose.connect("mongodb://127.0.0.1:27017/spregistration");
+        await mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true });
         console.log(`MONGO GOT CONNECTED`);
     } catch (error) {
         console.log(error);

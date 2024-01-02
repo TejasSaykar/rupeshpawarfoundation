@@ -53,7 +53,7 @@ const Register = () => {
 
 
         try {
-            const { data } = await axios.post("/api/user/register", input);
+            const { data } = await axios.post(`${import.meta.env.VITE_BASE_URL}/api/user/register`, input);
             if (data) {
                 setUser(data.newUser);
                 // console.log("Newuser Data", data.newUser)
@@ -64,7 +64,7 @@ const Register = () => {
 
                 message.success("Register successfully")
                 try {
-                    await axios.post("/api/user/email", { emailId: input.emailId, userLoginLink: "http://localhost:8080/api/user/isapprove/" + data.newUser._id });
+                    await axios.post(`${import.meta.env.VITE_BASE_URL}/api/user/email`, { emailId: input.emailId, userLoginLink: "http://localhost:8080/api/user/isapprove/" + data.newUser._id });
 
                 } catch (error) {
                     message.error(error.response.data.message)
