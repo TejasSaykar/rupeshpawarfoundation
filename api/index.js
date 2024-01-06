@@ -34,7 +34,7 @@ app.post("/api/upload", upload.single("file"), (req, res) => {
 
 
 
-const port = process.env.PORT || 8080;
+const port = 8080;
 app.listen(port, () => {
     console.log(`SERVER IS RUNNING ON http://localhost:${port}`);
 })
