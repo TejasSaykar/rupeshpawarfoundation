@@ -3,6 +3,12 @@
 @tailwind utilities;
 
 
+@media print{
+  #print{
+    background: white;
+    color: black;
+  }
+}
 
 /* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;

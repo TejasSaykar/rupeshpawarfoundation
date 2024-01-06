@@ -13,9 +13,11 @@ function App() {
   return (
     <>
       {/* <h1 className='text-center'>Spitertech Registration</h1> */ }
-      <Navbar />
+      <div style={{display: window.print === true ? "none" : "block"}}>
+        <Navbar />
+      </div>
       <Routes>
-        <Route path='/' element={ <IsLogin><Home /></IsLogin> }/>
+        <Route path='/' element={ <IsLogin><Home /></IsLogin> } />
         <Route path='/register' element={ <Register /> } />
         <Route path='/login' element={ <Login /> } />
         <Route path="/idcard" element={ <Idcard /> } />
