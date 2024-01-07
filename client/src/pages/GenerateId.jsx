@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { message } from "antd"
 import axios from "axios"
-import {useNavigate} from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { Auth } from '../context/Usercontext'
 
 const GenerateId = () => {
@@ -19,13 +19,13 @@ const GenerateId = () => {
 
     // console.log(file);
 
-    const userId = user._id;
+    // const userId = user._id;
     // console.log("userId", userId);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         let user = {
-            userId, fullName, bloodGroup, DOB, contactNumber1, contactNumber2
+            fullName, bloodGroup, DOB, contactNumber1, contactNumber2
         }
         if (file) {
             const data = new FormData();
@@ -44,7 +44,7 @@ const GenerateId = () => {
                 const { data } = await axios.post(`${import.meta.env.VITE_BASE_URL}/api/user/generateId`, user);
                 // console.log(data);
                 message.success("Id card generated");
-                localStorage.setItem("cardId", JSON.stringify(data.userIdCard._id))
+                localStorage.setItem("cardId", JSON.stringify(data.saveUser._id))
                 navigate(`/idcard/`)
             } catch (error) {
                 // console.log(error);
@@ -71,17 +71,17 @@ const GenerateId = () => {
                 <div className='w-full flex flex-col gap-3'>
                     <div className='flex flex-col'>
                         <label className='font-semibold text-gray-600' htmlFor="">DOB : </label>
-                        <input type="text" className='p-2 rounded-sm' value={ DOB } onChange={ (e) => setDOB(e.target.value ) } placeholder='DOB' />
+                        <input type="text" className='p-2 rounded-sm' value={ DOB } onChange={ (e) => setDOB(e.target.value) } placeholder='DOB' />
                     </div>
                     <div className='flex flex-col'>
                         <label className='font-semibold text-gray-600' htmlFor="">Contact Number1 : </label>
-                        <input type="text" className='p-2 rounded-sm' value={ contactNumber1 } onChange={ (e) => setContactNumber1(e.target.value ) } placeholder='Contact number1' />
+                        <input type="text" className='p-2 rounded-sm' value={ contactNumber1 } onChange={ (e) => setContactNumber1(e.target.value) } placeholder='Contact number1' />
                     </div>
                 </div>
                 <div className='flex flex-col gap-3'>
                     <div className='flex flex-col'>
                         <label className='font-semibold text-gray-600' htmlFor="">Contact Number2 : </label>
-                        <input type="text" className='p-2 rounded-sm' value={ contactNumber2 } onChange={ (e) => setContactNumber2(  e.target.value ) } placeholder='Contact number2' />
+                        <input type="text" className='p-2 rounded-sm' value={ contactNumber2 } onChange={ (e) => setContactNumber2(e.target.value) } placeholder='Contact number2' />
                     </div>
                     <div className='flex flex-col'>
                         <label className='font-semibold text-gray-600' htmlFor="">Upload Photo : </label>

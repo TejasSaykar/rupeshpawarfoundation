@@ -43,9 +43,10 @@ const Idcard = () => {
         <>
             <div className="flex justify-center w-full h-[90vh]">
                 <div ref={ componentRef } id="print" className="flex justify-center w-full h-[90vh]">
-                    <div id="print" className="w-full sm:w-1/3 lg:w-1/4 m-auto flex flex-col items-center justify-center  border border-gray-500 rounded-lg">
-                        <div className="flex flex-col items-center justify-center w-full">
-                            <div className="py-4 h-28 bg-slate-800 text-lg text-gray-300 font-bold md:flex md:items-centermd:justify-center md:text-center right-8 mb-2 rounded-t-lg">
+                    <div id="print" className="relative w-full sm:w-1/3 lg:w-1/4 m-auto flex flex-col items-center justify-center  border border-gray-500 rounded-lg">
+                        <div id="bg" className="relative flex flex-col items-center justify-center w-full">
+                        {/* <div id="overlay" className="rounded-lg"></div> */}
+                            <div className="py-4 h-28 bg-slate-800 text-lg text-gray-300 font-bold md:flex md:items-centermd:justify-center md:text-center right-8 mb-2 rounded-t-lg items-center justify-center">
                                 <h2 className="text-center" style={ { letterSpacing: "2px" } }>
                                     Shri Rupesh Pawar Foundation
                                 </h2>
@@ -59,30 +60,34 @@ const Idcard = () => {
                             />
                             <div className="flex flex-col">
                                 <div className="flex my-2 items-start">
-                                    <span className="font-semibold text-gray-600">Full Name : </span>
-                                    <h1 className="font-semibold mx-2">{ User.fullName }</h1>
+                                    <span className="font-semibold text-gray-400">User Id : </span>
+                                    <h1 className="font-semibold mx-2 text-gray-200">{ User.userId }</h1>
+                                </div>
+                                <div className="flex my-2 items-start">
+                                    <span className="font-semibold text-gray-400">Full Name : </span>
+                                    <h1 className="font-semibold mx-2 text-gray-200">{ User.fullName }</h1>
                                 </div>
                                 <div className="flex my-2" items-start>
-                                    <span className="font-semibold text-gray-600">
+                                    <span className="font-semibold text-gray-400">
                                         Blood Group :{ " " }
                                     </span>
-                                    <h1 className="font-semibold mx-2">{ User.bloodGroup }</h1>
+                                    <h1 className="font-semibold mx-2 text-gray-200">{ User.bloodGroup }</h1>
                                 </div>
                                 <div className="flex my-2 items-start">
-                                    <span className="font-semibold text-gray-600">DOB : </span>
-                                    <h1 className="font-semibold mx-2">{ User.DOB }</h1>
+                                    <span className="font-semibold text-gray-400">DOB : </span>
+                                    <h1 className="font-semibold mx-2 text-gray-200">{ User.DOB }</h1>
                                 </div>
                                 <div className="flex my-2 items-start">
-                                    <span className="font-semibold text-gray-600">
+                                    <span className="font-semibold text-gray-400">
                                         Contact Number1 :{ " " }
                                     </span>
-                                    <h1 className="font-semibold mx-2">{ User.contactNumber1 }</h1>
+                                    <h1 className="font-semibold mx-2 text-gray-600">{ User.contactNumber1 }</h1>
                                 </div>
                                 <div className="flex my-2 items-start">
-                                    <span className="font-semibold text-gray-600">
+                                    <span className="font-semibold text-gray-400">
                                         Contact Number2 :{ " " }
                                     </span>
-                                    <h1 className="font-semibold mx-2">{ User.contactNumber2 }</h1>
+                                    <h1 className="font-semibold mx-2 text-gray-600">{ User.contactNumber2 }</h1>
                                 </div>
                             </div>
                         </div>

@@ -77,7 +77,7 @@ exports.loginUser = async (req, res) => {
             })
         }
 
-        
+
 
         return res.status(200).json({
             success: false,
@@ -126,23 +126,25 @@ exports.isApprove = async (req, res) => {
 
 exports.generateIdCard = async (req, res) => {
     try {
-        const { userId, fullName, bloodGroup, DOB, contactNumber1, contactNumber2, photo } = req.body;
+        const { fullName, bloodGroup, DOB, contactNumber1, contactNumber2, photo } = req.body;
         switch (true) {
-            case !userId: return res.status(401).json({ message: "Userid is required!" });
             case !fullName: return res.status(401).json({ message: "Fullname is required!" });
             case !bloodGroup: return res.status(401).json({ message: "Blood group is required!" });
             case !DOB: return res.status(401).json({ message: "DOB is required!" });
             case !contactNumber1: return res.status(401).json({ message: "Contact number1 is required!" });
             case !contactNumber2: return res.status(401).json({ message: "Contact number2 is required!" });
             case !photo: return res.status(401).json({ message: "Photo is required!" });
-
         }
-        const userIdCard = await new idCardModel({ userId, fullName, bloodGroup, DOB, contactNumber1, contactNumber2, photo }).save();
+
+        const highestUser = await idCardModel.findOne({}, {}, { sort: { userId: -1 } });
+        const nextUserId = highestUser ? highestUser.userId + 1 : 1;
+        const userIdCard = await new idCardModel({userId:nextUserId, fullName, bloodGroup, DOB, contactNumber1, contactNumber2, photo });
+        const saveUser = await userIdCard.save();
 
         return res.status(200).json({
             success: true,
             message: "Id card is generated",
-            userIdCard
+            saveUser
         })
 
     } catch (error) {
@@ -160,7 +162,7 @@ exports.getIdCard = async (req, res) => {
     const id = req.params.id;
     // const {fullName} = req.body;
     try {
-        const employee = await idCardModel.findById({_id: id});
+        const employee = await idCardModel.findById({ _id: id });
         // const idCard = await idCardModel.findOne({fullName: fullName});
         return res.status(200).json({
             success: true,

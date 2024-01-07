@@ -2,8 +2,8 @@ const mongoose = require("mongoose")
 
 const idcardSchema = new mongoose.Schema({
     userId: {
-        type: String,
-        required: true
+        type: Number,
+        default: 0
     },
     fullName: {
         type: String,
