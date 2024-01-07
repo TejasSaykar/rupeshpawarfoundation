@@ -11,6 +11,9 @@ const Idcard = () => {
     const PF = "http://31.220.58.235:8080/images/";
     const [user] = Auth();
 
+    // const userName = user.fullName;
+    // console.log(userName)
+
     const componentRef = useRef();
 
     const getIdCard = async () => {
@@ -45,7 +48,7 @@ const Idcard = () => {
                 <div ref={ componentRef } id="print" className="flex justify-center w-full h-[90vh]">
                     <div id="print" className="relative w-full sm:w-1/3 lg:w-1/4 m-auto flex flex-col items-center justify-center  border border-gray-500 rounded-lg">
                         <div id="bg" className="relative flex flex-col items-center justify-center w-full">
-                        {/* <div id="overlay" className="rounded-lg"></div> */}
+                            {/* <div id="overlay" className="rounded-lg"></div> */ }
                             <div className="py-4 h-28 bg-slate-800 text-lg text-gray-300 font-bold md:flex md:items-centermd:justify-center md:text-center right-8 mb-2 rounded-t-lg items-center justify-center">
                                 <h2 className="text-center" style={ { letterSpacing: "2px" } }>
                                     Shri Rupesh Pawar Foundation
@@ -81,13 +84,13 @@ const Idcard = () => {
                                     <span className="font-semibold text-gray-400">
                                         Contact Number1 :{ " " }
                                     </span>
-                                    <h1 className="font-semibold mx-2 text-gray-600">{ User.contactNumber1 }</h1>
+                                    <h1 className="font-semibold mx-2 text-gray-600">+91 { User.contactNumber1 }</h1>
                                 </div>
                                 <div className="flex my-2 items-start">
                                     <span className="font-semibold text-gray-400">
                                         Contact Number2 :{ " " }
                                     </span>
-                                    <h1 className="font-semibold mx-2 text-gray-600">{ User.contactNumber2 }</h1>
+                                    <h1 className="font-semibold mx-2 text-gray-600">+91 { User.contactNumber2 }</h1>
                                 </div>
                             </div>
                         </div>

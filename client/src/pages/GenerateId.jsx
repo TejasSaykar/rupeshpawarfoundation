@@ -24,6 +24,18 @@ const GenerateId = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        const mobileRegex = /^[0-9]{10}$/;
+        if (!mobileRegex.test(contactNumber1)) {
+            message.error("Invalid Mobile Number1");
+            return;
+        }
+        const mobileRegex1 = /^[0-9]{10}$/;
+        if (!mobileRegex1.test(contactNumber2)) {
+            message.error("Invalid Mobile Number2");
+            return;
+        }
+
         let user = {
             fullName, bloodGroup, DOB, contactNumber1, contactNumber2
         }
@@ -71,7 +83,7 @@ const GenerateId = () => {
                 <div className='w-full flex flex-col gap-3'>
                     <div className='flex flex-col'>
                         <label className='font-semibold text-gray-600' htmlFor="">DOB : </label>
-                        <input type="text" className='p-2 rounded-sm' value={ DOB } onChange={ (e) => setDOB(e.target.value) } placeholder='DOB' />
+                        <input type="text" className='p-2 rounded-sm' value={ DOB } onChange={ (e) => setDOB(e.target.value) } placeholder='DOB: Separate with "/"(slash)' />
                     </div>
                     <div className='flex flex-col'>
                         <label className='font-semibold text-gray-600' htmlFor="">Contact Number1 : </label>
