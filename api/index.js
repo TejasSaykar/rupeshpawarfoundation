@@ -4,7 +4,8 @@ const connectDB = require("./config/db.js");
 const userRoute = require("./routes/employeeRoute.js");
 const multer = require("multer");
 const path = require("path");
-
+const https = require("https");
+const fs = require("fs");
 const app = express();
 
 app.use(express.json());
@@ -31,10 +32,23 @@ const upload = multer({ storage: storage });
 app.post("/api/upload", upload.single("file"), (req, res) => {
     res.status(200).json("File has been uploaded");
 });
+// Load SSL certificates (replace these paths with your own certificates)
+const privateKey = fs.readFileSync("./config/https/private.key", "utf8");
+const certificate = fs.readFileSync("./config/https/certficate.crt", "utf8");
+const ca = fs.readFileSync("./config/https/ca_bundle.crt", "utf8");
+
+const credentials = {
+    key: privateKey,
+    cert: certificate,
+    ca: ca,
+};
+
+// Create an HTTPS server
+const httpsServer = https.createServer(credentials, app);
 
 
 
 const port = 8080;
-app.listen(port, () => {
-    console.log(`SERVER IS RUNNING ON http://localhost:${port}`);
+httpsServer.listen(port, () => {
+    console.log("SERVER IS RUNNING ON http://localhost:${port}");
 })

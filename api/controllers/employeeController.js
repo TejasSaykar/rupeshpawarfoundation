@@ -160,7 +160,7 @@ exports.generateIdCard = async (req, res) => {
 
 exports.getIdCard = async (req, res) => {
     const id = req.params.id;
-    // const {fullName} = req.body;
+    // const userName = req.body.userName;
     try {
         const employee = await idCardModel.findById({ _id: id });
         // const idCard = await idCardModel.findOne({fullName: fullName});
