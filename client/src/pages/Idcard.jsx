@@ -8,7 +8,7 @@ import { useReactToPrint } from 'react-to-print';
 const Idcard = () => {
     const [User, setUser] = useState({});
     console.log(User);
-    const PF = "http://localhost:8080/images/";
+    const PF = "http://31.220.58.235:8080/images/";
     const [user] = Auth();
 
     const componentRef = useRef();

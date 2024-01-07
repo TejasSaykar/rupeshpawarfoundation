@@ -32,24 +32,24 @@ const Register = () => {
             return
         }
 
-        // const aadharRegex = /^[0-9]{12}$/;
-        // if (!aadharRegex.test(input.aadharNumber)) {
-        //     message.error("Invalid Aadhar Card Number");
-        //     return;
-        // }
+        const aadharRegex = /^[0-9]{12}$/;
+        if (!aadharRegex.test(input.aadharNumber)) {
+            message.error("Invalid Aadhar Card Number");
+            return;
+        }
 
 
-        // const panRegex = /^[A-Za-z]{5}[0-9]{4}[A-Za-z]$/;
-        // if (!panRegex.test(input.panCardNumber)) {
-        //     message.error("Invalid PAN Card Number");
-        //     return;
-        // }
+        const panRegex = /^[A-Za-z]{5}[0-9]{4}[A-Za-z]$/;
+        if (!panRegex.test(input.panCardNumber)) {
+            message.error("Invalid PAN Card Number");
+            return;
+        }
 
-        // const mobileRegex = /^[0-9]{10}$/;
-        // if (!mobileRegex.test(input.whatsappNumber)) {
-        //     message.error("Invalid Mobile Nummber");
-        //     return;
-        // }
+        const mobileRegex = /^[0-9]{10}$/;
+        if (!mobileRegex.test(input.whatsappNumber)) {
+            message.error("Invalid Mobile Nummber");
+            return;
+        }
 
 
         try {
