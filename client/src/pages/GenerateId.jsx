@@ -19,7 +19,7 @@ const GenerateId = () => {
 
     // console.log(file);
 
-    // const userId = user._id;
+    const userId = user._id;
     // console.log("userId", userId);
 
     const handleSubmit = async (e) => {
@@ -37,7 +37,7 @@ const GenerateId = () => {
         }
 
         let user = {
-            fullName, bloodGroup, DOB, contactNumber1, contactNumber2
+            userId, fullName, bloodGroup, DOB, contactNumber1, contactNumber2
         }
         if (file) {
             const data = new FormData();
@@ -54,10 +54,11 @@ const GenerateId = () => {
             }
             try {
                 const { data } = await axios.post(`${import.meta.env.VITE_BASE_URL}/api/user/generateId`, user);
-                // console.log(data);
-                message.success("Id card generated");
-                localStorage.setItem("cardId", JSON.stringify(data.saveUser._id))
-                navigate(`/idcard/`)
+                if (data) {
+                    console.log("Generate",data.idCard);
+                    message.success("Id card generated");
+                    navigate(`/idcard/`)
+                }
             } catch (error) {
                 // console.log(error);
                 message.error(error.response.data.message);

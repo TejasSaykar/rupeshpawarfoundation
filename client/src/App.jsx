@@ -7,9 +7,13 @@ import Login from './pages/Login'
 import Home from './pages/Home'
 import Idcard from './pages/Idcard'
 import GenerateId from './pages/GenerateId'
+import Productregister from './pages/Productregister'
+import { Auth } from "././context/Usercontext"
+import Payment from './pages/Payment'
 
 function App() {
 
+  
   return (
     <>
       {/* <h1 className='text-center'>Spitertech Registration</h1> */ }
@@ -22,6 +26,8 @@ function App() {
         <Route path='/login' element={ <Login /> } />
         <Route path="/idcard" element={ <Idcard /> } />
         <Route path='/generateid' element={ <GenerateId /> } />
+        <Route path='/register-product' element={<Productregister/>} />
+        <Route path='/payment' element={<Payment/>} />
       </Routes>
 
     </>
@@ -34,5 +40,6 @@ export const IsLogin = (props) => {
     return <Navigate to={ "/login" } />
   }
 }
+
 
 export default App

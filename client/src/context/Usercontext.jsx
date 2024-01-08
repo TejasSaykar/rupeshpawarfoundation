@@ -5,6 +5,7 @@ export const UserContext = createContext();
 
 const ContextProvider = ({children}) => {
     const [user, setUser] = useState({});
+    const [product, setProd] = useState({});
 
     useEffect(() => {
         const data = localStorage.getItem("user");
@@ -12,12 +13,18 @@ const ContextProvider = ({children}) => {
             const parseData = JSON.parse(data);
             setUser(parseData)
         }
-    },[])
+        const product = localStorage.getItem("product");
+        if(product){
+            const parseProduct = JSON.parse(product);
+            setProd(parseProduct)
+        }
+    },[]);
 
-    // console.log("Context User",user)
+    console.log("Context User",user);
+    console.log("Product", product);
 
     return(
-        <UserContext.Provider value={[user, setUser]}>{children}</UserContext.Provider>
+        <UserContext.Provider value={[user, setUser, product, setProd]}>{children}</UserContext.Provider>
     )
 }
 

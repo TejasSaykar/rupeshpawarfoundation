@@ -22,7 +22,7 @@ const Register = () => {
 
     const [user, setUser] = useState({});
 
-    const userLoginLink = "http://localhost:8080/api/user/isapprove/"
+    const userLoginLink = "http://31.220.58.235:8080/api/user/isapprove/"
     // console.log(object)
 
     const handleSubmit = async (e) => {
@@ -55,12 +55,12 @@ const Register = () => {
         try {
             const { data } = await axios.post(`${import.meta.env.VITE_BASE_URL}/api/user/register`, input);
             if (data) {
-                setUser(data.newUser);
+                // setUser(data.newUser);
                 // console.log("Newuser Data", data.newUser)
                 // console.log("User Data", user);
 
-                localStorage.setItem("user", JSON.stringify(data.newUser));
-                setUser(data.newUser);
+                // localStorage.setItem("user", JSON.stringify(data.newUser));
+                // setUser(data.newUser);
 
                 message.success("Register successfully")
                 try {

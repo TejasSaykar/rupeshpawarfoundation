@@ -1,5 +1,5 @@
 const express = require("express")
-const { generateIdCard, getIdCard, isApprove, registerUser, loginUser } = require("../controllers/employeeController.js");
+const { generateIdCard, isApprove, registerUser, loginUser, getUser } = require("../controllers/employeeController.js");
 const { Email } = require("../utils/sendMail.js");
 
 const router = express.Router();
@@ -12,7 +12,7 @@ router.post("/email", Email);
 
 router.post("/generateId", generateIdCard);
 
-router.get("/getcard/:id", getIdCard);
+router.get("/getuser/:id", getUser);
 
 router.post("/login", loginUser);
 

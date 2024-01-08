@@ -32,7 +32,15 @@ const userSchema = new mongoose.Schema({
     isApprove : {
         type: Boolean,
         default: false
-    }
+    },
+    isId:{
+        type: Boolean,
+        default: false
+    },
+    idCard:[{
+        type: mongoose.Schema.Types.ObjectId,
+        ref:"idcard"
+    }]
 
 },{timestamps: true});
 

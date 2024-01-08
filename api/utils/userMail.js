@@ -1,10 +1,9 @@
 const Mailgen = require("mailgen")
 const nodemailer = require("nodemailer")
 
-exports.Email = (req, res) => {
+exports.userEmail = (req, res) => {
     try {
-        const { userLoginLink } = req.body;
-        console.log(userLoginLink)
+        const { purchaserName, purchaserEmail, productName } = req.body;
         let config = {
             service: "gmail",
             auth: {
@@ -24,17 +23,16 @@ exports.Email = (req, res) => {
 
         let response = {
             body: {
-                name: "Tejas Saykar",
+                name: purchaserName,
                 table: {
                     data: [
                         {
-                            item: "New Registration",
-                            description: "Click the link to approve the registration",
-                            link: userLoginLink
+                            item: "New Product Registration",
+                            ProductName: productName,
                         }
                     ]
                 },
-                outro: "Registration Authentication"
+                outro: "Product Registration"
             }
         }
 
@@ -42,7 +40,7 @@ exports.Email = (req, res) => {
         let message = {
             from: "tejas.spitertech@gmail.com",
             to: "tejassaykar2001@gmail.com",
-            subject: { userLoginLink },
+            subject: "Product Registration",
             html: mail
         }
 

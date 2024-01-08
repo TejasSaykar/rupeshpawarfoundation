@@ -1,6 +1,7 @@
 const userModel = require("../models/employeeModel.js")
 const idCardModel = require("../models/idcardModel.js");
 const employeeModel = require("../models/employeeModel.js");
+const { default: mongoose } = require("mongoose");
 
 exports.registerUser = async (req, res) => {
     try {
@@ -16,8 +17,8 @@ exports.registerUser = async (req, res) => {
             case !password: return res.status(401).json({ message: "Password is required!" });
         }
 
-        const chemail = await userModel.findOne({ emailId });
-        if (chemail) {
+        const checkmail = await userModel.findOne({ emailId });
+        if (checkmail) {
             return res.status(401).json({
                 success: false,
                 message: "Email already exists please login"
@@ -126,7 +127,7 @@ exports.isApprove = async (req, res) => {
 
 exports.generateIdCard = async (req, res) => {
     try {
-        const { fullName, bloodGroup, DOB, contactNumber1, contactNumber2, photo } = req.body;
+        const { userId, fullName, bloodGroup, DOB, contactNumber1, contactNumber2, photo } = req.body;
         switch (true) {
             case !fullName: return res.status(401).json({ message: "Fullname is required!" });
             case !bloodGroup: return res.status(401).json({ message: "Blood group is required!" });
@@ -141,10 +142,19 @@ exports.generateIdCard = async (req, res) => {
         const userIdCard = await new idCardModel({userId:nextUserId, fullName, bloodGroup, DOB, contactNumber1, contactNumber2, photo });
         const saveUser = await userIdCard.save();
 
+        let objectId = new mongoose.Types.ObjectId(saveUser.id)
+
+        const idCard = await employeeModel.findByIdAndUpdate(
+            {_id: userId},
+            {$push:{idCard: objectId}, $set:{isId:true}},
+            {new: true}
+        )
+
+
         return res.status(200).json({
             success: true,
             message: "Id card is generated",
-            saveUser
+            idCard
         })
 
     } catch (error) {
@@ -158,22 +168,21 @@ exports.generateIdCard = async (req, res) => {
 }
 
 
-exports.getIdCard = async (req, res) => {
+
+exports.getUser = async(req,res) => {
     const id = req.params.id;
-    // const userName = req.body.userName;
     try {
-        const employee = await idCardModel.findById({ _id: id });
-        // const idCard = await idCardModel.findOne({fullName: fullName});
+        const employee = await employeeModel.findById({_id:id}).populate({path:"idCard", model:"idcard"});
         return res.status(200).json({
             success: true,
-            message: "Id card is getting",
+            message: "Employee is getting",
             employee
-        })
+        }) 
     } catch (error) {
         console.log(error);
-        res.status(500).json({
+        return res.status(500).json({
             success: false,
-            message: "Error while getting the idCard",
+            message: "Error while getting the user",
             error
         })
     }

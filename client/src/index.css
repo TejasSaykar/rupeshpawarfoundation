@@ -7,16 +7,26 @@
   #print{
     background: white;
     color: black;
+    width: 300px;
+    margin: auto;
+  }
+  #bg{
+    width: 100%;
+    padding: 0px 5px;
+
   }
 }
 
 #bg{
-  background-image: url("/img/img1.jpg");
+  background-image: url("/img/visiting-card.jpg");
   opacity: 1;
+  padding-top: 3rem;
+  background-size: cover;
+  /* background-position: center; */
   border-radius: 8px;
-  object-fit: contain;
+  object-fit: cover;
   height: 100%;
-  background-repeat: calc(100%-30px);
+  background-repeat: no-repeat;
 }
 #overlay{
   position: fixed;

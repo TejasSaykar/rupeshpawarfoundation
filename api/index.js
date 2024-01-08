@@ -2,6 +2,7 @@ const express = require("express")
 const cors = require("cors");
 const connectDB = require("./config/db.js");
 const userRoute = require("./routes/employeeRoute.js");
+const productRoute = require("./routes/productRoute.js")
 const multer = require("multer");
 const path = require("path");
 const https = require("https");
@@ -18,6 +19,7 @@ app.use("/images", express.static(path.join(__dirname, "/images")));
 
 // Routes
 app.use("/api/user", userRoute);
+app.use("/api/product", productRoute);
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -50,5 +52,5 @@ const httpsServer = https.createServer(credentials, app);
 
 const port = 8080;
 httpsServer.listen(port, () => {
-    console.log("SERVER IS RUNNING ON http://localhost:${port}");
+    console.log(`SERVER IS RUNNING ON http://localhost:${port}`);
 })
