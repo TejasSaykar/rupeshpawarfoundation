@@ -23,12 +23,12 @@ const Productregister = () => {
     e.preventDefault();
 
     const mobileRegex = /^[0-9]{10}$/;
-        if (!mobileRegex.test(purchaserMobile)) {
+        if (!mobileRegex.test(product.purchaserMobile)) {
             message.error("Invalid Mobile Number");
             return;
         }
         const mobileRegex1 = /^[0-9]{10}$/;
-        if (!mobileRegex1.test(purchaserWhatsapp)) {
+        if (!mobileRegex1.test(product.purchaserWhatsapp)) {
             message.error("Invalid Whatsapp Number");
             return;
         }
