@@ -15,7 +15,7 @@ const Home = () => {
         Welcome { user.fullName }
       </div>
       <div className='flex flex-col px-10 py-8 md:flex-row md:gap-4 items-center justify-center'>
-        { isId? 
+        { isId || user.isId? 
           <button style={ { backgroundColor: "green" } } className='text-white py-2 my-3 px-4 rounded-sm text-base' onClick={ () => navigate('/idcard') }>See Id Card</button>
           :
           <button style={ { backgroundColor: "green" } } className='text-white py-2 my-3 px-4 rounded-sm text-base' onClick={ () => navigate('/generateid') }>Generate Id Card</button> }

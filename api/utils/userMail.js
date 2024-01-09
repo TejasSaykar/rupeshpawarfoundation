@@ -23,16 +23,16 @@ exports.userEmail = (req, res) => {
 
         let response = {
             body: {
-                name: purchaserName,
+                name: `${purchaserName} payment received successfully`,
                 table: {
                     data: [
                         {
-                            item: "New Product Registration",
+                            item: "New Product Purchased",
                             ProductName: productName,
                         }
                     ]
                 },
-                outro: "Product Registration"
+                // outro: "Product Registration"
             }
         }
 

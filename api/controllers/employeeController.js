@@ -127,7 +127,7 @@ exports.isApprove = async (req, res) => {
 
 exports.generateIdCard = async (req, res) => {
     try {
-        const { userId, fullName, bloodGroup, DOB, contactNumber1, contactNumber2, photo } = req.body;
+        const { userId, fullName, bloodGroup, DOB, contactNumber1, contactNumber2, photo, address } = req.body;
         switch (true) {
             case !fullName: return res.status(401).json({ message: "Fullname is required!" });
             case !bloodGroup: return res.status(401).json({ message: "Blood group is required!" });
@@ -135,11 +135,12 @@ exports.generateIdCard = async (req, res) => {
             case !contactNumber1: return res.status(401).json({ message: "Contact number1 is required!" });
             case !contactNumber2: return res.status(401).json({ message: "Contact number2 is required!" });
             case !photo: return res.status(401).json({ message: "Photo is required!" });
+            case !address: return res.status(401).json({ message: "Address is required!" });
         }
 
         const highestUser = await idCardModel.findOne({}, {}, { sort: { userId: -1 } });
         const nextUserId = highestUser ? highestUser.userId + 1 : 1;
-        const userIdCard = await new idCardModel({userId:nextUserId, fullName, bloodGroup, DOB, contactNumber1, contactNumber2, photo });
+        const userIdCard = await new idCardModel({userId:nextUserId, fullName, bloodGroup, DOB, contactNumber1, contactNumber2, photo, address });
         const saveUser = await userIdCard.save();
 
         let objectId = new mongoose.Types.ObjectId(saveUser.id)

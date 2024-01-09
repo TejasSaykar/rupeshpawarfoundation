@@ -8,8 +8,8 @@ const Navbar = () => {
 
   const handleLogout = () => {
     localStorage.removeItem("user");
-    setUser({});
     localStorage.removeItem("isId")
+    setUser({});
   }
 
   return (

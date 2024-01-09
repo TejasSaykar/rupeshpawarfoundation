@@ -11,6 +11,7 @@ const GenerateId = () => {
     const [DOB, setDOB] = useState("");
     const [contactNumber1, setContactNumber1] = useState("");
     const [contactNumber2, setContactNumber2] = useState("");
+    const [address, setAddress] = useState("");
     const [file, setFile] = useState(null);
 
     const navigate = useNavigate();
@@ -37,7 +38,7 @@ const GenerateId = () => {
         }
 
         let user = {
-            userId, fullName, bloodGroup, DOB, contactNumber1, contactNumber2
+            userId, fullName, bloodGroup, DOB, contactNumber1, contactNumber2, address
         }
         if (file) {
             const data = new FormData();
@@ -95,6 +96,10 @@ const GenerateId = () => {
                     <div className='flex flex-col'>
                         <label className='font-semibold text-gray-600' htmlFor="">Contact Number2 : </label>
                         <input type="text" className='p-2 rounded-sm' value={ contactNumber2 } onChange={ (e) => setContactNumber2(e.target.value) } placeholder='Contact number2' />
+                    </div>
+                    <div className='flex flex-col'>
+                        <label className='font-semibold text-gray-600' htmlFor="">Address : </label>
+                        <input type="text" className='p-2 rounded-sm' value={ address } onChange={ (e) => setAddress(e.target.value) } placeholder='Contact number2' />
                     </div>
                     <div className='flex flex-col'>
                         <label className='font-semibold text-gray-600' htmlFor="">Upload Photo : </label>

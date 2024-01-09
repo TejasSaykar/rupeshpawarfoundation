@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useState } from 'react'
 import { Auth } from '../context/Usercontext';
 import { useNavigate } from 'react-router-dom'
+import { message } from 'antd';
 
 const Payment = () => {
 
@@ -10,22 +11,13 @@ const Payment = () => {
 
     const navigate = useNavigate();
 
-    const [product] = Auth();
+    // const [product] = Auth();
     // console.log("Context Product", product)
+
+    const product = JSON.parse(localStorage.getItem("product"));
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        try {
-            const { data } = await axios.post(`${import.meta.env.VITE_BASE_URL}/api/product/userEmail`, {
-                purchaserName: product.purchaserName,
-                productName: product.productName
-            })
-            if (data) {
-                navigate("/")
-            }
-        } catch (error) {
-            console.log(error);
-        }
 
         if (file) {
             const data = new FormData();
@@ -37,6 +29,20 @@ const Payment = () => {
             } catch (error) {
                 console.log(error);
             }
+
+            try {
+                const { data } = await axios.post(`${import.meta.env.VITE_BASE_URL}/api/product/userEmail`, {
+                    purchaserName: product.purchaserName,
+                    productName: product.productName
+                })
+                if (data) {
+                    navigate("/");
+                    message.success("Payment Received")
+                }
+            } catch (error) {
+                console.log(error);
+            }
+
             // try {
             //     const { data } = await axios.post(`${import.meta.env.VITE_BASE_URL}/api/product/adminEmail`, { photo: data });
             //     if (data) {
@@ -86,7 +92,7 @@ const Payment = () => {
                 <div className="md:flex md:items-center">
                     <div className="md:w-1/3"></div>
                     <div className="md:w-2/3">
-                        <button className="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="button">
+                        <button className="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">
                             Submit
                         </button>
                     </div>
