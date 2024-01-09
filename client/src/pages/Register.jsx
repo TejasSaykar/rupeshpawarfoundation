@@ -64,7 +64,7 @@ const Register = () => {
 
                 message.success("Register successfully")
                 try {
-                    await axios.post(`${import.meta.env.VITE_BASE_URL}/api/user/email`, { emailId: input.emailId, userLoginLink: "http://localhost:8080/api/user/isapprove/" + data.newUser._id });
+                    await axios.post(`${import.meta.env.VITE_BASE_URL}/api/user/email`, { emailId: input.emailId, userLoginLink: "http://31.220.58.235:8080/api/user/isapprove/" + data.newUser._id });
 
                 } catch (error) {
                     message.error(error.response.data.message)

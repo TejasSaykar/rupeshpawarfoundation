@@ -9,7 +9,7 @@ const Idcard = () => {
     const [User, setUser] = useState({});
     // console.log(User);
     // const PF = "http://31.220.58.235:8080/images/";
-    const PF = "http://localhost:8080/images/";
+    const PF = "http://31.220.58.235:8080/images/";
     const [user, setIsId] = Auth();
 
     // const userId = user._id;
