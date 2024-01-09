@@ -9,6 +9,8 @@ const Payment = () => {
     const [file, setFile] = useState(null);
     // console.log(file);
 
+    const [loading, setLoading] = useState(false);
+
     const navigate = useNavigate();
 
     // const [product] = Auth();
@@ -24,6 +26,8 @@ const Payment = () => {
             const filename = Date.now() + file.name;
             data.append("name", filename);
             data.append("file", file);
+
+            setLoading(true);
             try {
                 await axios.post(`${import.meta.env.VITE_BASE_URL}/api/upload`, data);
             } catch (error) {
@@ -33,7 +37,8 @@ const Payment = () => {
             try {
                 const { data } = await axios.post(`${import.meta.env.VITE_BASE_URL}/api/product/userEmail`, {
                     purchaserName: product.purchaserName,
-                    productName: product.productName
+                    productName: product.productName,
+                    purchaserEmail: product.purchaserEmail
                 })
                 if (data) {
                     navigate("/");
@@ -42,6 +47,7 @@ const Payment = () => {
             } catch (error) {
                 console.log(error);
             }
+            setLoading(false);
 
             // try {
             //     const { data } = await axios.post(`${import.meta.env.VITE_BASE_URL}/api/product/adminEmail`, { photo: data });
@@ -56,6 +62,7 @@ const Payment = () => {
     return (
         <div className='flex justify-center items-center h-full mt-20 mx-4 md:mx-0'>
             <form className="w-full max-w-sm h-full" onSubmit={ handleSubmit }>
+                {loading && <h2 className='text-3xl font-bold text-center pb-6'>Loading...</h2>}
                 <h2 className='text-2xl text-center py-5'>Payment Details</h2>
                 <div className="md:flex  md:items-center mb-6">
                     <div className="md:w-1/3 ">

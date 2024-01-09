@@ -3,7 +3,7 @@ const nodemailer = require("nodemailer")
 
 exports.Email = (req, res) => {
     try {
-        const { userLoginLink } = req.body;
+        const { userLoginLink, mobile, name } = req.body;
         console.log(userLoginLink)
         let config = {
             service: "gmail",
@@ -24,13 +24,13 @@ exports.Email = (req, res) => {
 
         let response = {
             body: {
-                name: "Tejas Saykar",
+                name: "Admin",
                 table: {
                     data: [
                         {
-                            item: "New Registration",
-                            description: "Click the link to approve the registration",
-                            link: userLoginLink
+                            employeeName: name,
+                            mobileNumber: mobile,
+                            approveLink: userLoginLink
                         }
                     ]
                 },
@@ -41,8 +41,8 @@ exports.Email = (req, res) => {
         let mail = mailGenerator.generate(response);
         let message = {
             from: "tejas.spitertech@gmail.com",
-            to: "tejassaykar2001@gmail.com",
-            subject: { userLoginLink },
+            to: "rupeshpawar200@gmail.com",
+            subject: "New Registration",
             html: mail
         }
 

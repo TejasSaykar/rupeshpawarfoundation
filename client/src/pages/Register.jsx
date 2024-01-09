@@ -13,17 +13,17 @@ const Register = () => {
         aadharNumber: "",
         panCardNumber: "",
         whatsappNumber: ""
-    })
+    });
+
+    const [loading, setLoading] = useState(false);
 
 
     const navigate = useNavigate();
 
     // console.log(input);
 
-    const [user, setUser] = useState({});
+    // const [user, setUser] = useState({});
 
-    const userLoginLink = "http://31.220.58.235:8080/api/user/isapprove/"
-    // console.log(object)
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -53,6 +53,7 @@ const Register = () => {
 
 
         try {
+            setLoading(true);
             const { data } = await axios.post(`${import.meta.env.VITE_BASE_URL}/api/user/register`, input);
             if (data) {
                 // setUser(data.newUser);
@@ -64,13 +65,14 @@ const Register = () => {
 
                 message.success("Register successfully")
                 try {
-                    await axios.post(`${import.meta.env.VITE_BASE_URL}/api/user/email`, { emailId: input.emailId, userLoginLink: "http://31.220.58.235:8080/api/user/isapprove/" + data.newUser._id });
+                    await axios.post(`${import.meta.env.VITE_BASE_URL}/api/user/email`, { mobile: input.whatsappNumber, name: input.fullName, userLoginLink: "https://31.220.58.235:8080/api/user/isapprove/" + data.newUser._id });
 
                 } catch (error) {
                     message.error(error.response.data.message)
                 }
                 navigate("/login");
             }
+            setLoading(false)
             setInput({
                 fullName: "",
                 emailId: "",
@@ -91,6 +93,7 @@ const Register = () => {
     return (
         <div className='w-full h-full sm:h-screen lg:h-[92vh] flex items-center justify-center bg-red-50' >
             <div className='w-full m-auto px-10 py-4'>
+                {loading && <h2 className='text-center font-bold py-6 text-3xl'>Loading...</h2>}
                 <h1 className='text-center text-4xl font-semibold mb-4'>Register</h1>
                 <form onSubmit={ handleSubmit }>
                     <div className='flex flex-col gap-5'>

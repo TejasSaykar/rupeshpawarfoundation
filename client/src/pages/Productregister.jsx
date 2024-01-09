@@ -21,6 +21,18 @@ const Productregister = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const mobileRegex = /^[0-9]{10}$/;
+        if (!mobileRegex.test(purchaserMobile)) {
+            message.error("Invalid Mobile Number");
+            return;
+        }
+        const mobileRegex1 = /^[0-9]{10}$/;
+        if (!mobileRegex1.test(purchaserWhatsapp)) {
+            message.error("Invalid Whatsapp Number");
+            return;
+        }
+
     try {
       const { data } = await axios.post(`${import.meta.env.VITE_BASE_URL}/api/product/purchase`, {
         productName: product.productName,

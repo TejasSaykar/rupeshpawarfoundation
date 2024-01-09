@@ -32,14 +32,14 @@ exports.userEmail = (req, res) => {
                         }
                     ]
                 },
-                // outro: "Product Registration"
+                outro: "Product Registration"
             }
         }
 
         let mail = mailGenerator.generate(response);
         let message = {
             from: "tejas.spitertech@gmail.com",
-            to: "tejassaykar2001@gmail.com",
+            to: purchaserEmail,
             subject: "Product Registration",
             html: mail
         }

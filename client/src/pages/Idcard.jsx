@@ -44,14 +44,11 @@ const Idcard = () => {
 
     return (
         <>
-            <div className="flex justify-center w-full h-[90vh]">
+            <div className="flex my-5 justify-center w-full h-[90vh]">
                 <div ref={ componentRef } id="print" className="flex justify-center w-full h-[90vh]">
-                    <div id="print" className="relative w-full sm:w-1/3 lg:w-1/4 m-auto flex flex-col items-center justify-center  border border-gray-500 rounded-lg">
-                        <div id="bg" className="h-[400px] flex flex-col items-center justify-center w-full">
-                            {/* <div className="absolute top-4 right-0">
-                                <h2 className="text-[11px] font-semibold"><span className="text-[10px] font-normal">Reg.No : </span>F-0019731(NSK)</h2>
-                            </div> */}
-                            <div className="flex mt-10 mx-3">
+                    <div id="print" className="relative w-full sm:w-1/3 lg:w-[400px] m-auto flex flex-col items-center justify-center  border border-gray-500 rounded-lg">
+                        <div id="bg" className="h-[400px] flex flex-col items-start justify-center w-full pl-7">
+                            <div className="m-auto relative flex mt-16 mx-3 items-center ml-20">
                                 <img
                                     src={ PF + User.photo }
                                     className="rounded-full border-2 border-yellow-400 flex items-center justify-center"
@@ -60,6 +57,9 @@ const Idcard = () => {
                                     alt=""
                                 />
                             </div>
+                            {/* <div className="absolute top-4 right-0">
+                                <h2 className="text-[11px] font-semibold"><span className="text-[10px] font-normal">Reg.No : </span>F-0019731(NSK)</h2>
+                            </div> */}
                             <div className="flex flex-col">
                                 <div className="flex my-2 items-start">
                                     <span className="font-semibold text-blue-700">User Id : </span>
