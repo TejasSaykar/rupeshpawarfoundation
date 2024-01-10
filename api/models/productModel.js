@@ -24,6 +24,10 @@ const productSchema = new mongoose.Schema({
     purchaserEmail:{
         type: String,
         required: true
+    },
+    screenshot:{
+        type: String,
+        // required: true
     }
 },{timestamps: true});
 

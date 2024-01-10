@@ -39,7 +39,7 @@ exports.userEmail = (req, res) => {
         let mail = mailGenerator.generate(response);
         let message = {
             from: "tejas.spitertech@gmail.com",
-            to: purchaserEmail,
+            to: purchaserEmail, // "tejassaykar250@gmail.com",
             subject: "Product Registration",
             html: mail
         }

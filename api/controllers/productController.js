@@ -30,3 +30,21 @@ exports.purchaseProduct = async (req, res) => {
         })
     }
 }
+
+exports.getProducts = async (req,res) => {
+    try {
+        const products = await productModel.find({});
+        return res.status(200).json({
+            success: true,
+            message: "All products are getting",
+            products
+        })
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+            success: false,
+            message: "Error while getting the all products",
+            error
+        })
+    }
+}

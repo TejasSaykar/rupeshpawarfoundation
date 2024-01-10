@@ -43,7 +43,7 @@ const Productregister = () => {
         purchaserEmail: product.purchaserEmail
       });
       if (data) {
-        console.log("Product", data.product);
+        // console.log("Product", data.product);
         message.success("Product Purchsed");
         navigate("/payment")
         localStorage.setItem("product", JSON.stringify(data.product));

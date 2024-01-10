@@ -45,8 +45,11 @@ const Login = () => {
 
   return (
     <div className='w-full h-[92vh] flex text-white items-center justify-center' style={ { backgroundImage: "url('/img/loginBg.jpeg')", backgroundSize: "cover", } }>
-      <div className='w-full md:w-1/3 sm:w-1/2 m-auto px-10 py-4'>
-        <h1 className='text-center text-3xl font-semibold'>Login</h1>
+      <div className='relative w-full md:w-1/3 sm:w-1/2 m-auto px-10 py-4'>
+        <h1 className='text-center text-4xl font-semibold'>User Login</h1>
+        <div>
+          <button onClick={()=> navigate("/admin-login")} className='bg-sky-600 relative -right-48 mt-7 py-2 px-4 rounded-md hover:bg-sky-800'>Admin Login</button>
+        </div>
         <form onSubmit={ handleSubmit }>
           <div className='flex flex-col gap-5'>
             <div className='flex flex-col'>

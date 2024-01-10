@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import axios from "axios"
 import { message } from "antd"
 import { Link, useNavigate } from 'react-router-dom'
+import Spinner from '../components/Spinner'
 
 const Register = () => {
     const [input, setInput] = useState({
@@ -63,7 +64,6 @@ const Register = () => {
                 // localStorage.setItem("user", JSON.stringify(data.newUser));
                 // setUser(data.newUser);
 
-                message.success("Register successfully")
                 try {
                     await axios.post(`${import.meta.env.VITE_BASE_URL}/api/user/email`, { mobile: input.whatsappNumber, name: input.fullName, userLoginLink: "https://31.220.58.235:8080/api/user/isapprove/" + data.newUser._id });
 
@@ -73,6 +73,7 @@ const Register = () => {
                 navigate("/login");
             }
             setLoading(false)
+            message.success("Register successfully");
             setInput({
                 fullName: "",
                 emailId: "",
@@ -86,14 +87,18 @@ const Register = () => {
         } catch (error) {
             console.log(error.response.data.message);
             message.error(error.response.data.message);
+            setLoading(false)
         }
     }
 
+    // if(loading){
+    //     return <Spinner/>
+    // }
 
     return (
         <div className='w-full h-full sm:h-screen lg:h-[92vh] flex items-center justify-center bg-red-50' >
             <div className='w-full m-auto px-10 py-4'>
-                {loading && <h2 className='text-center font-bold py-6 text-3xl'>Loading...</h2>}
+                { loading && <Spinner /> }
                 <h1 className='text-center text-4xl font-semibold mb-4'>Register</h1>
                 <form onSubmit={ handleSubmit }>
                     <div className='flex flex-col gap-5'>

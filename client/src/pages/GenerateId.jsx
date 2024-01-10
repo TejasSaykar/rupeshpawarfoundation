@@ -56,7 +56,7 @@ const GenerateId = () => {
             try {
                 const { data } = await axios.post(`${import.meta.env.VITE_BASE_URL}/api/user/generateId`, user);
                 if (data) {
-                    console.log("Generate",data.idCard);
+                    // console.log("Generate",data.idCard);
                     message.success("Id card generated");
                     navigate(`/idcard/`)
                 }

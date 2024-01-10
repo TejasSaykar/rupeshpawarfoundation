@@ -24,8 +24,8 @@ const ContextProvider = ({ children }) => {
         }
     }, [])
 
-    console.log("Context User", user);
-    console.log("Product", product);
+    // console.log("Context User", user);
+    // console.log("Product", product);
 
     return (
         <UserContext.Provider value={ [user, setUser, product, setProd] }>{ children }</UserContext.Provider>

@@ -7,7 +7,6 @@ import { useReactToPrint } from 'react-to-print';
 
 const Idcard = () => {
     const [User, setUser] = useState({});
-    // console.log(User);
     // const PF = "http://31.220.58.235:8080/images/";
     const PF = "http://31.220.58.235:8080/images/";
     const [user, setIsId] = Auth();
@@ -23,7 +22,7 @@ const Idcard = () => {
                 `${import.meta.env.VITE_BASE_URL}/api/user/getuser/${user._id}`);
             if (data) {
                 setUser(data.employee.idCard[0]);
-                console.log("Idcard Data", data.employee.idCard[0]);
+                // console.log("Idcard Data", data.employee.idCard[0]);
                 localStorage.setItem("isId", true);
                 setIsId(data.employee);
             }
