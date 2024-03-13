@@ -36,7 +36,7 @@ app.post("/api/upload", upload.single("file"), (req, res) => {
 });
 // Load SSL certificates (replace these paths with your own certificates)
 const privateKey = fs.readFileSync("./config/https/private.key", "utf8");
-const certificate = fs.readFileSync("./config/https/certficate.crt", "utf8");
+const certificate = fs.readFileSync("./config/https/certificate.crt", "utf8");
 const ca = fs.readFileSync("./config/https/ca_bundle.crt", "utf8");
 
 const credentials = {
