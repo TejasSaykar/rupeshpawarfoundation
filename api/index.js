@@ -30,6 +30,10 @@ const storage = multer.diskStorage({
     }
 });
 
+app.get("/",(req,res) => {
+    res.send("Hello from server")
+})
+
 const upload = multer({ storage: storage });
 app.post("/api/upload", upload.single("file"), (req, res) => {
     res.status(200).json("File has been uploaded");
@@ -51,6 +55,6 @@ const httpsServer = https.createServer(credentials, app);
 
 
 const port = 8081;
-httpsServer.listen(port, () => {
+app.listen(port, () => {
     console.log(`SERVER IS RUNNING ON http://localhost:${port}`);
 })

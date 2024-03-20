@@ -9,7 +9,7 @@ exports.Email = (req, res) => {
             service: "gmail",
             auth: {
                 user: "tejas.spitertech@gmail.com",
-                pass: "sbizasygivyilumk"
+                pass: "mysnnccqeoruzkml"
             }
         }
 
@@ -41,7 +41,7 @@ exports.Email = (req, res) => {
         let mail = mailGenerator.generate(response);
         let message = {
             from: "tejas.spitertech@gmail.com",
-            to: "rupeshpawar200@gmail.com",
+            to: "tejassaykar2001@gmail.com",
             subject: "New Registration",
             html: mail
         }

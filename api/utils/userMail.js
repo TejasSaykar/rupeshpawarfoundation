@@ -8,7 +8,7 @@ exports.userEmail = (req, res) => {
             service: "gmail",
             auth: {
                 user: "tejas.spitertech@gmail.com",
-                pass: "sbizasygivyilumk"
+                pass: "mysnnccqeoruzkml"
             }
         }
 
