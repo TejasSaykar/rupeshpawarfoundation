@@ -5,7 +5,7 @@ const ProductList = () => {
 
     const [productList, setProductList] = useState([]);
 
-    const PF = "http://31.220.58.235:8080/images/";
+    const PF = "http://31.220.58.235:8082/images/";
 
     useEffect(() => {
         const fetchProducts = async () => {
