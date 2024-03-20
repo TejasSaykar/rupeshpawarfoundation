@@ -65,7 +65,7 @@ const Register = () => {
                 // setUser(data.newUser);
 
                 try {
-                    await axios.post(`${import.meta.env.VITE_BASE_URL}/api/user/email`, { mobile: input.whatsappNumber, name: input.fullName, userLoginLink: "http://31.220.58.235:8082/api/user/isapprove/" + data.newUser._id });
+                    await axios.post(`${import.meta.env.VITE_BASE_URL}/api/user/email`, { mobile: input.whatsappNumber, name: input.fullName, userLoginLink: "https://brahmand.online:8082/api/user/isapprove/" + data.newUser._id });
 
                 } catch (error) {
                     message.error(error.response.data.message)

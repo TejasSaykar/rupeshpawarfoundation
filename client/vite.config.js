@@ -6,7 +6,7 @@ export default defineConfig({
   server: {
     proxy: {
       // "/api": "http://localhost:8080"
-      "/api" : "http://31.220.58.235:8082"
+      "/api" : "https://brahmand.online:8082"
     }
   },
   plugins: [react()],

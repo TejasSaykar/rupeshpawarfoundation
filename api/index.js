@@ -38,23 +38,59 @@ const upload = multer({ storage: storage });
 app.post("/api/upload", upload.single("file"), (req, res) => {
     res.status(200).json("File has been uploaded");
 });
-// Load SSL certificates (replace these paths with your own certificates)
-const privateKey = fs.readFileSync("./config/https/private.key", "utf8");
-const certificate = fs.readFileSync("./config/https/certificate.crt", "utf8");
-const ca = fs.readFileSync("./config/https/ca_bundle.crt", "utf8");
 
-const credentials = {
-    key: privateKey,
-    cert: certificate,
-    ca: ca,
-};
+const PORT = 8082;
+
+const appInProduction = true;
+// db.getConnection((error) => {
+//     if (error) {
+//         console.log(error); 
+//     } else {
+//         console.log('Mongo database connected....🌼🌼')
+        if (!appInProduction) {
+            app.listen(PORT, () => {
+                console.log(`Server running on http://localhost:${PORT} ✅`);
+            });
+        } else {
+            
+            const httpsOptions = {
+                key: fs.readFileSync("./config/https/private.key"),
+                cert: fs.readFileSync("./config/https/certificate.crt"),
+                ca: [fs.readFileSync('./config/https/ca_bundle.crt')]
+            };
+
+             https.createServer(httpsOptions, app).listen(PORT, (error) => {
+                if (error) {
+                    console.error("Error starting HTTPS server:", error);
+                } else {
+                    console.log(`Server running on https://brahmand.online:${PORT} ✅`);
+                }
+            });
+        }
+//     } 
+// });
+
+
+// Load SSL certificates (replace these paths with your own certificates)
+// const privateKey = fs.readFileSync("./config/https/private.key", "utf8");
+// const certificate = fs.readFileSync("./config/https/certificate.crt", "utf8");
+// const ca = fs.readFileSync("./config/https/ca_bundle.crt", "utf8");
+
+
+// const credentials = {
+//     key: privateKey,
+//     cert: certificate,
+//     ca: ca,
+// };
 
 // Create an HTTPS server
-const httpsServer = https.createServer(credentials, app);
+// const httpsServer = https.createServer(credentials, app);
+
+
+// const port = 8082;
+// httpsServer.listen(port, () => {
+//     console.log(`SERVER IS RUNNING ON http://localhost:${port}`);
+// });
 
 
 
-const port = 8082;
-app.listen(port, () => {
-    console.log(`SERVER IS RUNNING ON http://localhost:${port}`);
-})
